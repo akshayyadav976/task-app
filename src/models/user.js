@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+
+const jwt = require('jsonwebtoken')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 
-const jwt = require('jsonwebtoken')
 const Tasks = require('../models/tasks.js')
 
 
@@ -126,7 +127,7 @@ console.log('IN findByCredentials')
 userSchema.pre('save', async function(next){
 
     const user= this
-    console.log('just before saving')
+    //console.log('just before saving')
 
     if(user.isModified('password')){
         user.password = await bcrypt.hash(user.password,8)
